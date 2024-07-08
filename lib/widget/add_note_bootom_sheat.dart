@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/ffi_patch.dart';
+
 import 'package:flutter/material.dart';
 
 class AddNoteBottomSheat extends StatelessWidget {
@@ -6,7 +8,8 @@ class AddNoteBottomSheat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      decoration: BoxDecoration(),
+      child: Column(children: [TextField(),SizedBox(height: 15,),TextField(),],),
     );
   }
 }
