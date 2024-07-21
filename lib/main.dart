@@ -5,12 +5,13 @@ import 'views/home_view.dart';
 
 void main() async {
   await Hive.initFlutter();
+  
   await Hive.openBox('NotesBox');
-  runApp(const MyApp());
+  runApp(const NoteApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NoteApp extends StatelessWidget {
+  const NoteApp({super.key});
 
   @override
   Widget build(BuildContext context) {
