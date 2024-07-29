@@ -9,7 +9,7 @@ part 'add_note_state.dart';
 @immutable
 // ignore: must_be_immutable
 class AddNoteCubit extends Cubit<AddNoteState> {
-  AddNoteCubit() : super(AddNoteCubit() as AddNoteState);
+  AddNoteCubit() : super(AddNoteInitial());
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
 
