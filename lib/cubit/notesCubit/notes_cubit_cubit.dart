@@ -10,14 +10,9 @@ part 'notes_cubit_state.dart';
 // ignore: must_be_immutable
 class NotesCubit extends Cubit<NotesCubitState> {
   NotesCubit() : super(NotesCubitInitial());
-
+  List<NoteModel>? notes;
   fetchAllNotes() async {
-    try {
-      var notesBox = Hive.box<NoteModel>('NotesBox');
-      List<NoteModel> notes = notesBox.values.toList();
-      emit(NotesCubitSuccess(notes));
-      } catch (e) {
-      emit(NotesCubitFailure(e.toString()));
-    }
+    var notesBox = Hive.box<NoteModel>('NotesBox');
+     notes = notesBox.values.toList();
   }
 }
