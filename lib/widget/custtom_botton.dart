@@ -12,10 +12,10 @@ class CusttomBotton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 55,
         decoration: BoxDecoration(
-            color: Colors.deepPurple, borderRadius: BorderRadius.circular(25)),
+            color: Colors.deepPurple, borderRadius: BorderRadius.circular(35)),
         child: Center(
           child: isLoading
-              ? CircularProgressIndicator()
+              ? CircularProgressIndicator(backgroundColor:Colors.green,)
               : Text(
                   'Add ',
                   style: TextStyle(

@@ -17,12 +17,14 @@ class NoteItem extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.only(top: 24, bottom: 24, right: 16, left: 16),
           decoration: BoxDecoration(
+          
               color: Color(note.color),
               borderRadius: BorderRadius.circular(16)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ListTile(
+                
                 title: Text(
                   note.title,
                   style: TextStyle(fontSize: 26),
