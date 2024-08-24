@@ -10,9 +10,12 @@ part 'add_note_state.dart';
 // ignore: must_be_immutable
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddNoteInitial());
+
+  Color? color ;
+
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
-
+    note.color = color!.value;
     try {
       var notesBox = Hive.box<NoteModel>('NotesBox');
       await notesBox.add(note);
