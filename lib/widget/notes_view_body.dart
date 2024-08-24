@@ -24,7 +24,7 @@ class _NotesViewBodyState extends State<NotesViewBody> {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(children: [
-        const SizedBox(
+        SizedBox(
           height: 50,
         ),
         CustomAppBar(

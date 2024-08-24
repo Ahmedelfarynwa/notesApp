@@ -1,27 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/notesCubit/notes_cubit_cubit.dart';
+import 'package:notes_app/model/note_model.dart';
 import 'package:notes_app/widget/custom_app-bar.dart';
 import 'package:notes_app/widget/custom_text_fild.dart';
 
-class EditNoteViewBody extends StatelessWidget {
-  const EditNoteViewBody({super.key});
+class EditNoteViewBody extends StatefulWidget {
+  const EditNoteViewBody({super.key, required this.note});
+  final NoteModel note;
 
+  @override
+  State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
+}
+
+class _EditNoteViewBodyState extends State<EditNoteViewBody> {
+  String? title, subTitle;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           CustomAppBar(
+            onPressed: () {
+              widget.note.title = title ?? widget.note.title;
+              widget.note.subTitle = subTitle ?? widget.note.subTitle;
+              widget.note.save();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+              Navigator.pop(context);
+            },
             title: 'Edit Note',
             icon: Icons.check,
           ),
-          SizedBox(height: 30,),
-          CustomTextFild(hint: 'Tittle'),
-          SizedBox(height: 15,),
-          CustomTextFild(hint: 'Contint',maxlins: 5 ,),
+          const SizedBox(
+            height: 30,
+          ),
+          CustomTextFild(
+              onChanged: (value) {
+                title = value;
+              },
+              hint: widget.note.title.substring(0),),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomTextFild(
+            onChanged: (value) {
+              subTitle = value;
+            },
+            hint: widget.note.subTitle,
+            maxlins: 5,
+          ),
         ],
       ),
     );

@@ -15,8 +15,8 @@ class CusttomBotton extends StatelessWidget {
             color: Colors.deepPurple, borderRadius: BorderRadius.circular(35)),
         child: Center(
           child: isLoading
-              ? CircularProgressIndicator(backgroundColor:Colors.green,)
-              : Text(
+              ? const CircularProgressIndicator(backgroundColor:Colors.green,)
+              : const Text(
                   'Add ',
                   style: TextStyle(
                     fontSize: 25,

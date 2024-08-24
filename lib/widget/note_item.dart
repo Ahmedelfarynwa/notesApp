@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app/cubit/notesCubit/notes_cubit_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
@@ -11,11 +13,11 @@ class NoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return EditNoteView();
+          return EditNoteView(note: note,);
         }));
       },
       child: Container(
-          padding: EdgeInsets.only(top: 24, bottom: 24, right: 16, left: 16),
+          padding: const EdgeInsets.only(top: 24, bottom: 24, right: 16, left: 16),
           decoration: BoxDecoration(
               color: Color(note.color),
               borderRadius: BorderRadius.circular(16)),
@@ -25,7 +27,7 @@ class NoteItem extends StatelessWidget {
               ListTile(
                 title: Text(
                   note.title,
-                  style: TextStyle(fontSize: 26),
+                  style: const TextStyle(fontSize: 26),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 16, bottom: 16),
@@ -38,8 +40,10 @@ class NoteItem extends StatelessWidget {
                 trailing: IconButton(
                   onPressed: () {
                     note.delete();
+                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                   },
-                  icon: Icon(
+                  icon: const Icon(
+                    
                     FontAwesomeIcons.trash,
                     size: 30,
                   ),
@@ -47,10 +51,12 @@ class NoteItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 24),
-                child: Text(
-                  note.date,
-                  style: TextStyle(
-                      fontSize: 15, color: Colors.white.withOpacity(0.3)),
+                child: SizedBox(
+                  child: Text(
+                    note.date,
+                    style: TextStyle(
+                        fontSize: 15, color: Colors.white.withOpacity(0.3)),
+                  ),
                 ),
               )
             ],
